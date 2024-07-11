@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aniversários</title>
+    <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
     <h1>Cadastro de pessoas</h1>
     <form class="form js-form">
         <label for="name">Nome</label>
-        <input type="text" id="name" name="name" required pattern="([a-zA-Z]+)" class="form-field js-field">
+        <input type="text" id="name" name="name" required pattern="([a-zA-ZÀ-ÖØ-öø-ÿ]+(?:\s[a-zA-ZÀ-ÖØ-öø-ÿ]+)*)" class="form-field js-field">
         <label for="birth-date">Data de Nascimento</label>
         <input type="date" id="birth-date" name="birth-date" required class="form-field js-field">
         <button type="submit">Salvar</button>
     </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Data de Nascimento</th>
+            </tr>
+        </thead>
+        <tbody class="js-tbody">
+            <tr class="js-nenhuma">
+                <td colspan="2">Nenhuma pessoa foi encontrada.</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
