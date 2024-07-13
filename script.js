@@ -38,10 +38,13 @@ const criarElemento = (pessoa) => {
     const tdDataNascimento = document.createElement('td');
     tdDataNascimento.textContent = pessoa.dataNascimento;
     const tdBotao = document.createElement('td');
-    const botao = document.createElement('button');
-    botao.textContent = "Editar";
+    const botaoEditar = document.createElement('button');
+    botaoEditar.textContent = "Editar";
+    const botaoDeletar = document.createElement('button');
+    botaoDeletar.textContent = "Deletar";
 
-    tdBotao.appendChild(botao);
+    tdBotao.appendChild(botaoEditar);
+    tdBotao.appendChild(botaoDeletar);
     tr.appendChild(tdNome);
     tr.appendChild(tdDataNascimento);
     tr.appendChild(tdBotao);
@@ -60,12 +63,19 @@ const criarElemento = (pessoa) => {
         formulario.addEventListener('submit', salvarFormulario);
     }
 
-    botao.onclick = () => {
+    botaoEditar.onclick = () => {
         campoNome.value = pessoa.nome;
         campoData.value = formatarData(pessoa.dataNascimento);
         botaoFormulario.textContent = "Editar";
         formulario.removeEventListener('submit', salvarFormulario);
         formulario.addEventListener('submit', atualizar);
+    }
+
+    botaoDeletar.onclick = () => {
+        pessoas = pessoas.filter(p => pessoa != p);
+        localStorage.setItem("pessoas", JSON.stringify(pessoas));
+        tr.remove();
+        pessoas.length < 1 ? tbody.appendChild(trNenhuma) : "";
     }
 
     return tr;
