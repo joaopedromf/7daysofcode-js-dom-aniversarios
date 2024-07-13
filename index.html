@@ -14,18 +14,19 @@
         <input type="text" id="name" name="name" required pattern="([a-zA-ZÀ-ÖØ-öø-ÿ]+(?:\s[a-zA-ZÀ-ÖØ-öø-ÿ]+)*)" class="form-field js-field">
         <label for="birth-date">Data de Nascimento</label>
         <input type="date" id="birth-date" name="birth-date" required class="form-field js-field">
-        <button type="submit">Salvar</button>
+        <button type="submit" id="botao-formulario">Salvar</button>
     </form>
     <table>
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Data de Nascimento</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody class="js-tbody">
             <tr class="js-nenhuma">
-                <td colspan="2">Nenhuma pessoa foi encontrada.</td>
+                <td colspan="3">Nenhuma pessoa foi encontrada.</td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,7 @@
 const formulario = document.querySelector('.js-form');
 const campoNome = document.querySelectorAll('.js-field')[0];
 const campoData = document.querySelectorAll('.js-field')[1];
+const botaoFormulario = document.getElementById('botao-formulario');
 const tbody = document.querySelector('.js-tbody');
 const trNenhuma = document.querySelector('.js-nenhuma');
 
@@ -13,23 +14,68 @@ campoNome.setAttribute('minlength', tamanhoMinimoNome);
 campoNome.setAttribute('maxlength', tamanhoMaximoNome);
 campoData.setAttribute('max', new Date().toISOString().split('T')[0]);
 
+const formatarData = (data) => {
+    let dataDividida = [];
+    if(data.includes('/')){
+        dataDividida = data.split('/');
+        return `${dataDividida[2]}-${dataDividida[1]}-${dataDividida[0]}`;
+    }
+    else{
+        dataDividida = data.split('-');
+        return `${dataDividida[2]}/${dataDividida[1]}/${dataDividida[0]}`;
+    }
+}
+
+const limparCampos = () => {
+    campoNome.value = '';
+    campoData.value = '';
+}
+
 const criarElemento = (pessoa) => {
     const tr = document.createElement('tr');
     const tdNome = document.createElement('td');
     tdNome.textContent = pessoa.nome;
     const tdDataNascimento = document.createElement('td');
     tdDataNascimento.textContent = pessoa.dataNascimento;
+    const tdBotao = document.createElement('td');
+    const botao = document.createElement('button');
+    botao.textContent = "Editar";
+
+    tdBotao.appendChild(botao);
     tr.appendChild(tdNome);
     tr.appendChild(tdDataNascimento);
+    tr.appendChild(tdBotao);
+
+    const atualizar = (evento) => {
+        evento.preventDefault();
+        pessoa.nome = campoNome.value;
+        pessoa.dataNascimento = formatarData(campoData.value);
+        localStorage.setItem("pessoas", JSON.stringify(pessoas));
+        tdNome.textContent = pessoa.nome;
+        tdDataNascimento.textContent = pessoa.dataNascimento;
+
+        botaoFormulario.textContent = "Salvar";
+        limparCampos();
+        formulario.removeEventListener('submit', atualizar);
+        formulario.addEventListener('submit', salvarFormulario);
+    }
+
+    botao.onclick = () => {
+        campoNome.value = pessoa.nome;
+        campoData.value = formatarData(pessoa.dataNascimento);
+        botaoFormulario.textContent = "Editar";
+        formulario.removeEventListener('submit', salvarFormulario);
+        formulario.addEventListener('submit', atualizar);
+    }
+
     return tr;
 }
 
-formulario.addEventListener('submit', (evento) => {
+const salvarFormulario = (evento) => {
     evento.preventDefault();
 
     const nome = campoNome.value;
-    let dataNascimento = campoData.value.split('-');
-    dataNascimento = `${dataNascimento[2]}/${dataNascimento[1]}/${dataNascimento[0]}`;
+    const dataNascimento = formatarData(campoData.value);
 
     const pessoa = { nome, dataNascimento };
     pessoas.push(pessoa);
@@ -39,9 +85,10 @@ formulario.addEventListener('submit', (evento) => {
     const elemento = criarElemento(pessoa);
     tbody.appendChild(elemento);
 
-    campoNome.value = '';
-    campoData.value = '';
-});
+    limparCampos();
+}
+
+formulario.addEventListener('submit', salvarFormulario);
 
 campoNome.oninvalid = () => {
     campoNome.setCustomValidity("");
