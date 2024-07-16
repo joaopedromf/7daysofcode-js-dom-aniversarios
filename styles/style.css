@@ -1,0 +1,188 @@
+:root{
+    --cor-azul-principal: #1b84fc;
+    --cor-azul-secundaria: #2d7bd4;
+    --cor-cinza: #555555;
+}
+
+*{
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(#85c8ff, #9198e5) no-repeat;
+    background-attachment: fixed;
+}
+
+button{ 
+    font-family: "Quicksand", sans-serif;
+}
+
+.titulo{
+    padding: 2.5rem 0;
+    font-family: "Handlee", cursive;
+    font-size: 3.3rem;
+    font-weight: 400;
+    text-align: center;
+    color: white;
+    text-decoration: underline;
+}
+
+.adicionar-container{
+    width: 100%;
+    padding: 0 10px;
+}
+
+.botao-container{
+    width: 100%;
+}
+
+.botao{
+    width: 100%;
+    background-color: var(--cor-azul-principal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: background-color .4s linear;
+}
+
+.botao:hover{
+    background-color: var(--cor-azul-secundaria);
+}
+.botao--vazado{
+    background-color: transparent;
+    color: var(--cor-azul-principal); 
+    border: 2px solid var(--cor-azul-principal);
+    font-weight: bold;
+    transition: all .4s linear;
+}
+
+.botao--vazado:hover{
+    background-color: var(--cor-azul-secundaria);
+    color: white;
+}
+
+.botao-adicionar{
+    display: block;
+    max-width: 300px;
+    width: auto;
+    margin: 0 auto 2rem;
+}
+
+.botao-adicionar i{
+    font-size: 1.3rem;
+    margin-right: .9rem;
+    vertical-align: bottom;
+}
+
+.form{
+    margin: 0 auto;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.esconder{
+    display: none;
+}
+
+.form__container{
+    width: 100%;
+}
+
+.form__contaner-botoes{
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.form label{
+    display: inline-block;
+    margin-bottom: 6px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.form-field{
+    width: 100%;
+    display: block;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-cinza);
+    font-size: 1rem;
+}
+
+.form-field:focus{
+    outline: none;
+    border: 1px solid var(--cor-azul-principal);
+}
+
+.tabela-container{
+    padding: 0 10px 1rem;
+}
+
+table{
+    margin: 3rem auto;
+}
+
+table, td, th{
+    border: 1px solid var(--cor-cinza);
+    border-collapse: collapse;
+}
+
+td, th{
+    padding: 10px 12px;
+}
+
+thead tr{
+    background-color: var(--cor-azul-principal);
+    color: white;
+}
+
+tbody tr{
+    background-color: white;
+}
+
+thead th:nth-child(2),
+tbody td:nth-child(2){
+    width: 110px;
+}
+
+.js-nenhuma td{
+    text-align: center;
+}
+
+.td-data{
+    text-align: center;
+}
+
+.td-botoes button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0 3px;
+}
+
+.td-botoes button i{
+    font-size: 1rem;
+    color: var(--cor-cinza);
+    transition: color .3s linear;
+}
+
+.td-botoes button:hover i{
+    color: black;
+}

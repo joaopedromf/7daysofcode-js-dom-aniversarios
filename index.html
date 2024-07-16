@@ -4,31 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aniversários</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <script src="./js/validacoes.js" defer></script>
+    <script src="./js/crud.js" defer></script>
 </head>
 <body>
-    <h1>Cadastro de pessoas</h1>
-    <form class="form js-form">
-        <label for="name">Nome</label>
-        <input type="text" id="name" name="name" required pattern="([a-zA-ZÀ-ÖØ-öø-ÿ]+(?:\s[a-zA-ZÀ-ÖØ-öø-ÿ]+)*)" class="form-field js-field">
-        <label for="birth-date">Data de Nascimento</label>
-        <input type="date" id="birth-date" name="birth-date" required class="form-field js-field">
-        <button type="submit" id="botao-formulario">Salvar</button>
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Data de Nascimento</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody class="js-tbody">
-            <tr class="js-nenhuma">
-                <td colspan="3">Nenhuma pessoa foi encontrada.</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1 class="titulo">Meus Aniversários</h1>
+    <div class="adicionar-container">
+        <div class="botao-container">
+            <button class="botao botao-adicionar" id="botao-adicionar"><i class="fa-solid fa-circle-plus"></i> Adicionar Pessoa</button>
+        </div>
+        <form class="form js-form esconder">
+            <div class="form__container">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" required pattern="([a-zA-ZÀ-ÖØ-öø-ÿ]+(?:\s[a-zA-ZÀ-ÖØ-öø-ÿ]+)*)" class="form-field js-field" placeholder="Nome da Pessoa" autocomplete="name">
+            </div>
+            <div class="form__container">
+                <label for="birth-date">Data de Nascimento</label>
+                <input type="date" id="birth-date" name="birth-date" required class="form-field js-field" placeholder="dd/mm/aaaa">
+            </div>
+            <div class="form__contaner-botoes">
+                <button type="button" class="botao botao--vazado" id="botao-cancelar">Cancelar</button>
+                <button type="submit" class="botao" id="botao-formulario">Salvar</button>
+            </div>
+        </form>
+    </div>
+    <div class="tabela-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody class="js-tbody">
+                <tr class="js-nenhuma">
+                    <td colspan="3">Nenhuma pessoa foi encontrada.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
