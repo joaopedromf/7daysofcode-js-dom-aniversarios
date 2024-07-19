@@ -4,18 +4,38 @@ const campoData = document.querySelectorAll('.js-field')[1];
 const botaoAdicionar = document.getElementById('botao-adicionar');
 const botaoCancelar = document.getElementById('botao-cancelar');
 const botaoFormulario = document.getElementById('botao-formulario');
+const tabela = document.querySelector('table');
 const tbody = document.querySelector('.js-tbody');
 const trNenhuma = document.querySelector('.js-nenhuma');
 
 let pessoas = JSON.parse(localStorage.getItem("pessoas")) || [];
 
-const abrirFormulario = () => formulario.classList.contains('esconder') ? formulario.classList.remove('esconder') : "";
-const fecharFormulario = () => {
+const abrirFormulario = () => {
+    if(formulario.classList.contains('esconder')){
+        formulario.style.opacity = "0";
+        formulario.classList.remove('esconder');
+        window.setTimeout(() => formulario.style.opacity = "1", 300);
+        tabela.classList.add('tabela-form-aberto');
+        window.setTimeout(() => tabela.classList.remove('tabela-form-aberto'), 1000);
+    }
+};
+const fecharFormulario = (animarTabela = true) => {
     limparCampos();
     formulario.removeEventListener('submit', atualizar);
     formulario.addEventListener('submit', salvarFormulario);
     botaoFormulario.textContent = "Salvar";
-    formulario.classList.add('esconder');
+    formulario.classList.add('form-fechado');
+    if(animarTabela){
+        tabela.classList.add('tabela-form-fechado');
+        formulario.style.opacity = "0";
+    }
+    window.setTimeout(() =>{ 
+        formulario.classList.remove('form-fechado');
+        formulario.classList.add('esconder');
+    }, 1500);
+    if(animarTabela){
+        window.setTimeout(() => tabela.classList.remove('tabela-form-fechado'), 1500);
+    }
 }
 
 botaoAdicionar.addEventListener('click', () => {
@@ -100,7 +120,7 @@ const criarElemento = (pessoa) => {
     botaoDeletar.onclick = () => {
         pessoas = pessoas.filter(p => pessoa != p);
         localStorage.setItem("pessoas", JSON.stringify(pessoas));
-        fecharFormulario();
+        fecharFormulario(false);
         tr.remove();
         pessoas.length < 1 ? tbody.appendChild(trNenhuma) : "";
     }

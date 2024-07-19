@@ -94,6 +94,12 @@ button{
     flex-direction: column;
     gap: 1.5rem;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    animation: formulario 1.5s;
+    animation-delay: 200ms;
+}
+
+.form-fechado{
+    animation: formulario-fechado 1.5s;
 }
 
 .esconder{
@@ -126,9 +132,38 @@ button{
     font-size: 1rem;
 }
 
+.form-field[type="date"]{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-height: 3rem;
+}
+
 .form-field:focus{
     outline: none;
     border: 1px solid var(--cor-azul-principal);
+}
+
+@keyframes formulario {
+    0%{
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes formulario-fechado {
+    0%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-10%);
+        opacity: 0;
+    }
 }
 
 .tabela-container{
@@ -137,6 +172,32 @@ button{
 
 table{
     margin: 3rem auto;
+}
+
+@keyframes tabela-form-aberto {
+    0%{
+        transform: translateY(-370%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+.tabela-form-aberto{
+    animation: tabela-form-aberto 1s cubic-bezier(.42,-0.01,.27,1.47);
+}
+
+@keyframes tabela-form-fechado {
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-370%);
+    }
+}
+
+.tabela-form-fechado{
+    animation: tabela-form-fechado 1.5s cubic-bezier(.42,-0.01,.27,1.47);
 }
 
 table, td, th{
